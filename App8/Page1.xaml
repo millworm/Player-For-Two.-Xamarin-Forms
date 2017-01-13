@@ -1,0 +1,517 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+             x:Class="App8.Page1">
+    <Grid>
+        <Grid.BackgroundColor>
+            <Color>White</Color>
+        </Grid.BackgroundColor>
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="0.01" />
+            <RowDefinition />
+            <RowDefinition Height="0"/>
+            <RowDefinition Height="0"/>
+            <RowDefinition Height="0"/>
+            <RowDefinition />
+        </Grid.RowDefinitions>
+
+        <!-- Menu -->
+        <Grid Grid.Row="0">
+
+        </Grid>
+        <!-- Top Player-->
+        <Grid Grid.Row="1">
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+                <RowDefinition Height="5*" />
+                <RowDefinition Height="1.5*"/>
+            </Grid.RowDefinitions>
+
+            <Grid >
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="0.01*" />
+                    <ColumnDefinition />
+                    <ColumnDefinition Width="0.15*"/>
+                    <ColumnDefinition Width="0.01*"/>
+                </Grid.ColumnDefinitions>
+
+                <Grid.RowDefinitions>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+
+                <Grid Grid.Column="1">
+                    <Grid.RowDefinitions>
+                        <RowDefinition/>
+                        <RowDefinition Height="0.01*"/>
+                    </Grid.RowDefinitions>
+                    <StackLayout Orientation="Horizontal">
+                        <Image Source ="blue_playlist.png"  >
+                            <Image.GestureRecognizers>
+                                <TapGestureRecognizer Tapped="OnTapTopPlayList"/>
+                            </Image.GestureRecognizers>
+                        </Image>
+                        <Label />
+                        <Label />
+                        <Image Source="blue_shuffle.png"   >
+                            <Image.GestureRecognizers>
+                                <TapGestureRecognizer Tapped="OnTapTopShuffle"/>
+                            </Image.GestureRecognizers>
+                        </Image>
+                        <Label />
+                        <Label />
+                        <Image Source="blue_repeat.png"   >
+                            <Image.GestureRecognizers>
+                                <TapGestureRecognizer Tapped="OnTapTopRepeat"/>
+                            </Image.GestureRecognizers>
+                        </Image>
+
+
+                    </StackLayout>
+
+                </Grid>
+                <Image Source ="blue_resize.png" 
+                       Grid.Column="2" Grid.Row="0" 
+                       HorizontalOptions="End">
+                    <Image.GestureRecognizers>
+                        <TapGestureRecognizer 
+                                Tapped="OnTapTopResize"/>
+                    </Image.GestureRecognizers>
+                </Image>
+            </Grid>
+
+            <Grid Grid.Row="1">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="0.36*"/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+
+                <StackLayout>
+                    <Label 
+                        x:Name="TopTextSong" 
+                        FontSize="Small"
+                        TextColor="Gray"
+                        Text="Song"
+                        HorizontalOptions="Center"/>
+                    <Label 
+                        x:Name="TopTextArtist" 
+                        FontSize="Medium"
+                        TextColor="Gray"
+                        Text="Artist"
+                        HorizontalOptions="Center"/>
+                </StackLayout>
+
+                <Grid Grid.Row="1">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                        <ColumnDefinition Width="1.5*"/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+
+                    <Grid Grid.Column="1">
+                        <Grid.RowDefinitions>
+                            <RowDefinition/>
+                            <RowDefinition Height="5*"/>
+                            <RowDefinition/>
+                        </Grid.RowDefinitions>
+
+                        <Image Source="blue_stop.png" 
+                               Grid.Row="1" 
+                               x:Name="TopStopButton"
+                               IsVisible="False">
+                            <Image.GestureRecognizers>
+                                <TapGestureRecognizer Tapped="OnTapTopStop"/>
+                            </Image.GestureRecognizers>
+                        </Image>
+
+                        <Image 
+                                x:Name="TopPlayButton"
+                                Source="blue_play.png" 
+                                Grid.Row="1" >
+                            <Image.GestureRecognizers>
+                                <TapGestureRecognizer
+                                    Tapped="OnTapTopPlay" 
+                                    NumberOfTapsRequired="1"
+                                    
+                                    />
+                            </Image.GestureRecognizers>
+                        </Image>
+
+                    </Grid>
+
+                    <Grid Grid.Column="0">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition/>
+                            <ColumnDefinition/>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                        </Grid.RowDefinitions>
+
+                        <Image 
+                            x:Name="TopButtonPrevSong"
+                            Grid.Row="1"
+                            Grid.Column="1"
+                            Source="blue_back.png">
+                            <Image.GestureRecognizers>
+                                <TapGestureRecognizer
+                                    Tapped="OnTapTopPreviewSong" 
+                                    NumberOfTapsRequired="1"
+                                    
+                                    />
+                            </Image.GestureRecognizers>
+                        </Image>
+                        <Label
+                            x:Name="TopTextCurrentTime"
+                            Grid.Column="0"
+                            Grid.Row="2"
+                            VerticalOptions="End"
+                            HorizontalOptions="Center"
+                            TextColor="Gray"
+                            Text="00:00"/>
+                        <!-- 
+                           BindingContext="{x:Reference TopMusicSlider}"
+                           Text="{Binding Value, StringFormat='{0:F0}'}" -->
+
+                    </Grid>
+
+                    <Grid Grid.Column="2">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition/>
+                            <ColumnDefinition/>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                        </Grid.RowDefinitions>
+
+                        <Image 
+                            x:Name="TopButtonNextSong"
+                            Grid.Row="1"
+                            Grid.Column="0"
+                            Source="blue_next.png">
+                            <Image.GestureRecognizers>
+                                <TapGestureRecognizer
+                                    Tapped="OnTapTopNextSong" 
+                                    NumberOfTapsRequired="1"
+                                    
+                                    />
+                            </Image.GestureRecognizers>
+                        </Image>
+                        <Label
+                            x:Name="TopTextFullTime"
+                            Grid.Column="1"
+                            Grid.Row="2"
+                            VerticalOptions="End"
+                            HorizontalOptions="Center"
+                            TextColor="Gray"
+                            Text="00:00"/>
+                    </Grid>
+                </Grid>
+            </Grid>
+
+            <Grid Grid.Row="2">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition x:Name="TopSliderRow"/>
+                        <RowDefinition Height="1.6*"/>
+                    </Grid.RowDefinitions>
+                    <Slider
+                        x:Name="TopMusicSlider"
+                        />
+                    <Grid Grid.Row="1">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="0.1*"/>
+                            <ColumnDefinition Width="0.7*"/>
+                            <ColumnDefinition Width="5*"/>
+                            <ColumnDefinition Width="0.7*"/>
+                            <ColumnDefinition Width="0.1*"/>
+                        </Grid.ColumnDefinitions>
+                        <Image 
+                            x:Name="TopButtonMute"
+                            Grid.Column="1"
+                            Source="blue_mute.png">
+                            <Image.GestureRecognizers>
+                                <TapGestureRecognizer
+                                    Tapped="OnTapTopMute" 
+                                    NumberOfTapsRequired="1"
+                                    />
+                            </Image.GestureRecognizers>
+                        </Image>
+                        <Image 
+                            x:Name="TopButtonHigh"
+                            Grid.Column="3"
+                            Source="blue_speaker.png">
+                            <Image.GestureRecognizers>
+                                <TapGestureRecognizer
+                                    Tapped="OnTapTopHigh" 
+                                    NumberOfTapsRequired="1"
+                                    />
+                            </Image.GestureRecognizers>
+                        </Image>
+
+                        <Slider
+                            x:Name="TopVolumeSlider"
+                            Grid.Column="2"
+                            Minimum="0"
+                            Maximum="15"
+                        />
+                    </Grid>
+                </Grid>
+            </Grid>
+        </Grid>
+
+        <!-- BotPlayer-->
+        <Grid Grid.Row="5">
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+                <RowDefinition Height="5*" />
+                <RowDefinition Height="1.5*"/>
+                <RowDefinition Height="0.1"/>
+            </Grid.RowDefinitions>
+
+            <Grid >
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="0.01*" />
+                    <ColumnDefinition />
+                    <ColumnDefinition Width="0.15*"/>
+                    <ColumnDefinition Width="0.01*"/>
+                </Grid.ColumnDefinitions>
+
+                <Grid.RowDefinitions>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+
+                <Grid Grid.Column="1">
+                    <Grid.RowDefinitions>
+                        <RowDefinition/>
+                        <RowDefinition Height="0.01*"/>
+                    </Grid.RowDefinitions>
+                    <StackLayout Orientation="Horizontal">
+                        <Image Source ="purple_playlist.png"  >
+                            <Image.GestureRecognizers>
+                                <TapGestureRecognizer Tapped="OnTapBotPlayList"/>
+                            </Image.GestureRecognizers>
+                        </Image>
+                        <Label />
+                        <Label />
+                        <Image Source="purple_shuffle.png"   >
+                            <Image.GestureRecognizers>
+                                <TapGestureRecognizer Tapped="OnTapBotShuffle"/>
+                            </Image.GestureRecognizers>
+                        </Image>
+                        <Label />
+                        <Label />
+                        <Image Source="purple_repeat.png"   >
+                            <Image.GestureRecognizers>
+                                <TapGestureRecognizer Tapped="OnTapBotRepeat"/>
+                            </Image.GestureRecognizers>
+                        </Image>
+
+
+                    </StackLayout>
+
+                </Grid>
+                <Image Source ="purple_resize.png" 
+                       Grid.Column="2" Grid.Row="0" 
+                       HorizontalOptions="End">
+                    <Image.GestureRecognizers>
+                        <TapGestureRecognizer 
+                                Tapped="OnTapBotResize"/>
+                    </Image.GestureRecognizers>
+                </Image>
+            </Grid>
+
+            <Grid Grid.Row="1">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="0.36*"/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+
+                <StackLayout>
+                    <Label 
+                        x:Name="BotTextSong" 
+                        FontSize="Small"
+                        TextColor="Gray"
+                        Text="Song"
+                        HorizontalOptions="Center"/>
+                    <Label 
+                        x:Name="BotTextArtist" 
+                        FontSize="Medium"
+                        TextColor="Gray"
+                        Text="Artist"
+                        HorizontalOptions="Center"/>
+                </StackLayout>
+
+                <Grid Grid.Row="1">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                        <ColumnDefinition Width="1.5*"/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+
+                    <Grid Grid.Column="1">
+                        <Grid.RowDefinitions>
+                            <RowDefinition/>
+                            <RowDefinition Height="5*"/>
+                            <RowDefinition/>
+                        </Grid.RowDefinitions>
+
+                        <Image Source="purple_stop.png" 
+                               Grid.Row="1" 
+                               x:Name="BotStopButton"
+                               IsVisible="False">
+                            <Image.GestureRecognizers>
+                                <TapGestureRecognizer Tapped="OnTapBotStop"/>
+                            </Image.GestureRecognizers>
+                        </Image>
+
+                        <Image 
+                                x:Name="BotPlayButton"
+                                Source="purple_play.png" 
+                                Grid.Row="1" >
+                            <Image.GestureRecognizers>
+                                <TapGestureRecognizer
+                                    Tapped="OnTapBotPlay" 
+                                    NumberOfTapsRequired="1"
+                                    
+                                    />
+                            </Image.GestureRecognizers>
+                        </Image>
+
+                    </Grid>
+
+                    <Grid Grid.Column="0">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition/>
+                            <ColumnDefinition/>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                        </Grid.RowDefinitions>
+
+                        <Image 
+                            x:Name="BotButtonPrevSong"
+                            Grid.Row="1"
+                            Grid.Column="1"
+                            Source="purple_back.png">
+                            <Image.GestureRecognizers>
+                                <TapGestureRecognizer
+                                    Tapped="OnTapBotPreviewSong" 
+                                    NumberOfTapsRequired="1"
+                                    
+                                    />
+                            </Image.GestureRecognizers>
+                        </Image>
+                        <Label
+                            x:Name="BotTextCurrentTime"
+                            Grid.Column="0"
+                            Grid.Row="2"
+                            VerticalOptions="End"
+                            HorizontalOptions="Center"
+                            TextColor="Gray"
+                            Text="00:00"/>
+                        <!-- 
+                           BindingContext="{x:Reference TopMusicSlider}"
+                           Text="{Binding Value, StringFormat='{0:F0}'}" -->
+
+                    </Grid>
+
+                    <Grid Grid.Column="2">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition/>
+                            <ColumnDefinition/>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                        </Grid.RowDefinitions>
+
+                        <Image 
+                            x:Name="BotButtonNextSong"
+                            Grid.Row="1"
+                            Grid.Column="0"
+                            Source="purple_next.png">
+                            <Image.GestureRecognizers>
+                                <TapGestureRecognizer
+                                    Tapped="OnTapBotNextSong" 
+                                    NumberOfTapsRequired="1"
+                                    
+                                    />
+                            </Image.GestureRecognizers>
+                        </Image>
+                        <Label
+                            x:Name="BotTextFullTime"
+                            Grid.Column="1"
+                            Grid.Row="2"
+                            VerticalOptions="End"
+                            HorizontalOptions="Center"
+                            TextColor="Gray"
+                            Text="00:00"/>
+                    </Grid>
+                </Grid>
+            </Grid>
+
+            <Grid Grid.Row="2">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition x:Name="BotSliderRow"/>
+                        <RowDefinition Height="1.6*"/>
+                    </Grid.RowDefinitions>
+                    <Slider
+                        x:Name="BotMusicSlider"
+                        />
+                    <Grid Grid.Row="1">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="0.1*"/>
+                            <ColumnDefinition Width="0.7*"/>
+                            <ColumnDefinition Width="5*"/>
+                            <ColumnDefinition Width="0.7*"/>
+                            <ColumnDefinition Width="0.1*"/>
+                        </Grid.ColumnDefinitions>
+                        <Image 
+                            x:Name="BotButtonMute"
+                            Grid.Column="1"
+                            Source="purple_mute.png">
+                            <Image.GestureRecognizers>
+                                <TapGestureRecognizer
+                                    Tapped="OnTapBotMute" 
+                                    NumberOfTapsRequired="1"
+                                    />
+                            </Image.GestureRecognizers>
+                        </Image>
+                        <Image 
+                            x:Name="BotButtonHigh"
+                            Grid.Column="3"
+                            Source="purple_speaker.png">
+                            <Image.GestureRecognizers>
+                                <TapGestureRecognizer
+                                    Tapped="OnTapBotHigh" 
+                                    NumberOfTapsRequired="1"
+                                    />
+                            </Image.GestureRecognizers>
+                        </Image>
+
+                        <Slider
+                            x:Name="BotVolumeSlider"
+                            Grid.Column="2"
+                            Minimum="0"
+                            Maximum="15"
+                        />
+                    </Grid>
+                </Grid>
+            </Grid>
+        </Grid>
+        <!-- Bottom Player-->
+    </Grid>
+</ContentPage>

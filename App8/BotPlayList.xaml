@@ -1,0 +1,32 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="App8.BotPlayList">
+    <ListView x:Name="listView1" CachingStrategy="RecycleElement" ItemSelected="listView1_ItemSelected" BackgroundColor="White" SeparatorVisibility="None" >
+        <ListView.ItemTemplate>
+            <DataTemplate >
+                <ViewCell >
+                    <StackLayout >
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="5"/>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="70"/>
+                            </Grid.ColumnDefinitions>
+                            <Label x:Name="nameLabel" Grid.Column="1" Text="{Binding name}" TextColor="Gray"/>
+                            <Label x:Name="singerLabel" Grid.Column="2" Text="{Binding singer}" TextColor="Gray"/>
+                            <Label x:Name="durationLabel" Grid.Column="3" Text="{Binding durationString}" TextColor="Gray"/>
+                        </Grid>
+                        <StackLayout 
+                                    BackgroundColor="#933EC5"
+                                    HeightRequest="1"
+                                    HorizontalOptions="FillAndExpand"
+                                    VerticalOptions="EndAndExpand"/>
+                    </StackLayout>
+
+                </ViewCell>
+            </DataTemplate>
+        </ListView.ItemTemplate>
+    </ListView>
+</ContentPage>
